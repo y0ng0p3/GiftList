@@ -7,12 +7,17 @@ There are three folders in this repository:
 ## Client
 
 You can run the client from the top-level directory with `node client/index`. This file is a script which will send an HTTP request to the server.
+That request contains a `name` and the `proof` created earlier from the `name`.
 
-Think of the client as the _prover_ here. It needs to prove to the server that some `name` is in the `MERKLE_ROOT` on the server. 
+The proof was got from a Merkle Tree object which is an instance of MerkleTree class from the `utils/` directory.
+
+Think of the client as the _prover_ here. It needs to prove to the server that some `name` is in the `MERKLE_ROOT` on the server.
 
 ## Server
 
 You can run the server from the top-level directory with `node server/index`. This file is an express server which will be hosted on port 1225 and respond to the client's request.
+
+The server take the `name` and the `proof` from the request and verify that proof with the `verifyProof()` function in the `utils/` directory.
 
 Think of the server as the _verifier_ here. It needs to verify that the `name` passed by the client is in the `MERKLE_ROOT`. If it is, then we can send the gift! 
 
